@@ -5,6 +5,7 @@ var assert = require('assert');
 
 var Operations = require('../../src/operations');
 var Event = require('../../src/model/event');
+ var operations = new Operations();
 
 describe('event', function () {
   it('Should create an event', function (done) {
@@ -13,10 +14,10 @@ describe('event', function () {
       roomName: "Beach",
       title: "Standup",
       description: "Informa",
-      startsAt: new Date("2017-07-10T18:30:00Z"),
-      endsAt: new Date("2017-07-10T19:30:00Z")
+      startsAt: new Date("2017-07-10T08:30:00Z"),
+      endsAt: new Date("2017-07-10T09:30:00Z")
     })
-    var operations = new Operations();
+   
 
     //when
     operations.createEvent(event)
@@ -30,7 +31,7 @@ describe('event', function () {
 
   })
 
-  it.only('Should throw when trying to create an event for a booked slot',function(done){
+  it('Should throw when trying to create an event for a booked slot',function(done){
 
     var event = new Event({
       roomName: "Beach",
@@ -39,7 +40,6 @@ describe('event', function () {
       startsAt: new Date("2017-07-10T14:00:00Z"),
       endsAt: new Date("2017-07-10T20:30:00Z")
     })
-    var operations = new Operations();
 
     operations.createEvent(event)
       .then((data) => {
