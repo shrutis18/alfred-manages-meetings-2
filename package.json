@@ -1,0 +1,29 @@
+{
+  "name": "alfred-manages-meetings-2",
+  "version": "1.0.0",
+  "description": "Slack-Bot",
+  "main": "index.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "chai-as-promised": "^6.0.0",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.10.0",
+    "reload": "^1.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "npm-run-all": "^4.0.2"
+  },
+  "scripts": {
+    "test": "mocha \"./test/**/*.spec.js\""
+  },
+  "keywords": [
+    "Bot"
+  ],
+  "author": "Shruti and Vishal",
+  "license": "ISC"
+}
