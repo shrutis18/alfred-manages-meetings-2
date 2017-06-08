@@ -56,8 +56,33 @@ function Operations() {
      
   }
 
+  function getMyEvents(userId){
+    //TODO check connection
+     return Event.find({
+      createdBy : userId
+    })
+  }
+
+ function getRoomEvents(roomName){
+   //TODO check connection
+     return Event.find({
+      roomName : roomName
+    })
+  }
+
+  function deleteEvent(roomName,startsAt){
+    //TODO check connection
+    return Event.findOneAndRemove({
+      roomName : roomName,
+      startsAt :startsAt
+    })
+  }
+
   return {
-    createEvent: createEvent
+    createEvent: createEvent,
+    getMyEvents : getMyEvents,
+    getRoomEvents : getRoomEvents,
+    deleteEvent: deleteEvent
   }
 
 }

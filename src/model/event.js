@@ -7,7 +7,8 @@ var eventSchema = new Schema({
   title : String,
   description : String,
   startsAt : Date,
-  endsAt :  Date
+  endsAt :  Date,
+  createdBy : String 
 });
 
 var EventModel = mongoose.model('Event',eventSchema);
