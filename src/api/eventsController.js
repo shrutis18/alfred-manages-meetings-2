@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
 
+var Event = require('../model/event');
+
+var bodyParser = require('body-parser');
 var Operations = require('../operations');
 
 var operations = new Operations();
+
+app.use(bodyParser.json()); 
 
 app.get('/', function (req, res) {
   res.send("Hello User!!!");
@@ -51,6 +56,17 @@ app.delete('/user/:userId/events/startingTime/:startsAt', function (req, res) { 
       console.log("Error",error);
     })
 
+});
+
+app.post('/events',function(req,res){ //POST request For event
+  var event = new Event(req.body);
+  operations.createEvent(event)
+     .then((createdEvent) => {
+       res.send(createdEvent);
+      })
+      .catch((error) => {
+        res.send(`Room is already booked for slot ${event.startsAt} to ${event.endsAt}.`);
+      })
 });
 
 
