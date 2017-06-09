@@ -8,7 +8,7 @@ var Event = require('../../src/model/event');
 var operations = new Operations();
 
 describe('event', function () {
-  it.only('Should create an event', function (done) {
+  it('Should create an event', function (done) {
     //given
     var event = new Event({
       roomName: "Beach",
@@ -38,8 +38,8 @@ describe('event', function () {
       roomName: "Beach",
       title: "Interview",
       description: "Code Pair",
-      startsAt: new Date("2017-07-10T14:00:00Z"),
-      endsAt: new Date("2017-07-10T20:30:00Z"),
+      startsAt: new Date("2017-07-10T08:30:00Z"),
+      endsAt: new Date("2017-07-10T09:30:00Z"),
       createdBy: "vsingh@equalexperts.com"
     })
 
