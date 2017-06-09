@@ -70,10 +70,10 @@ function Operations() {
     })
   }
 
-  function deleteEvent(roomName,startsAt){
+  function deleteEvent(userId,startsAt){
     //TODO check connection
     return Event.findOneAndRemove({
-      roomName : roomName,
+      createdBy : userId,
       startsAt :startsAt
     })
   }

@@ -8,7 +8,7 @@ var Event = require('../../src/model/event');
 var operations = new Operations();
 
 describe('event', function () {
-  it('Should create an event', function (done) {
+  it.only('Should create an event', function (done) {
     //given
     var event = new Event({
       roomName: "Beach",
@@ -39,7 +39,8 @@ describe('event', function () {
       title: "Interview",
       description: "Code Pair",
       startsAt: new Date("2017-07-10T14:00:00Z"),
-      endsAt: new Date("2017-07-10T20:30:00Z")
+      endsAt: new Date("2017-07-10T20:30:00Z"),
+      createdBy: "vsingh@equalexperts.com"
     })
 
     operations.createEvent(event)
@@ -81,11 +82,11 @@ describe('event', function () {
 
   })
 
- it('Should be able to remove an event by roomName and start time', function(done){
-    var roomName = "Beach";
+ it('Should be able to remove an event by userId and start time', function(done){
+    var userId = "ssingh@equalexperts.com";
     var startsAt = new Date("2017-07-10T08:30:00Z");
 
-    operations.deleteEvent(roomName,startsAt)
+    operations.deleteEvent(userId,startsAt)
       .then((event) =>{
         console.log("event deleted:",event);
       })
