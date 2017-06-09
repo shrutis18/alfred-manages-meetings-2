@@ -3,3 +3,6 @@ node_js:
   - "6"
 
 script: npm test
+
+services:
+- mongodb
