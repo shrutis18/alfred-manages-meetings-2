@@ -2,12 +2,14 @@ var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 var Event = require('./model/event');
+var Office = require('./model/office');
 
 function Operations() {
 
   var dbUrl = "mongodb://localhost/meetings";
   var conn = mongoose.connect(dbUrl);
   //mongoose.set('debug', true);
+  
 
   function createEvent(event){
     return new Promise((resolve,reject) => {
@@ -78,11 +80,18 @@ function Operations() {
     })
   }
 
+  function getRooms(){
+    return Office.find();
+  }
+
+  
+
   return {
     createEvent: createEvent,
     getMyEvents : getMyEvents,
     getRoomEvents : getRoomEvents,
-    deleteEvent: deleteEvent
+    deleteEvent: deleteEvent,
+    getRooms :getRooms
   }
 
 }

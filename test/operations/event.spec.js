@@ -5,7 +5,7 @@ var assert = require('assert');
 
 var Operations = require('../../src/operations');
 var Event = require('../../src/model/event');
-var operations = new Operations();
+//var operations = new Operations();
 
 describe('event', function () {
   it('Should create an event', function (done) {

@@ -14,6 +14,16 @@ app.get('/', function (req, res) {
   res.send("Hello User!!!");
 })
 
+app.get('/rooms',function(req,res){
+  operations.getRooms()
+    .then((rooms) => {
+      res.send(rooms)
+    })
+    .catch((error) =>{
+      res.send(error)
+    })
+})
+
 app.get('/room/:roomName/events', function (req, res) { //GET events by ROOM
   var roomName = req.params.roomName;
   operations.getRoomEvents(roomName)
@@ -31,9 +41,11 @@ app.get('/events/:userId', function (req, res) { //GET events by UserId
   var userId = req.params.userId;
   operations.getMyEvents(userId)
     .then((events) => {
-      if (events.length >= 1)
-        res.send(events);
-      res.send(`No Events for: ${userId}`);
+      if (events){
+        res.send(events);        
+      }else{
+      res.send(`No Events for: ${userId}`);        
+      }
     })
     .catch((error) => {
       res.send(error);
