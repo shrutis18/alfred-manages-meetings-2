@@ -20,7 +20,7 @@ function Operations() {
               if(events.length == 0){
                   event.save()
                       .then((event) => {
-                        resolve(event);
+                        resolve("Room booked Successfully");
                       })
                       .catch((error) => {
                         reject(error);
