@@ -8,18 +8,18 @@ var Operations = require('../operations');
 
 var operations = new Operations();
 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
   res.send("Hello User!!!");
 })
 
-app.get('/rooms',function(req,res){
+app.get('/rooms', function (req, res) {
   operations.getRooms()
     .then((rooms) => {
       res.send(rooms)
     })
-    .catch((error) =>{
+    .catch((error) => {
       res.send(error)
     })
 })
@@ -28,9 +28,11 @@ app.get('/room/:roomName/events', function (req, res) { //GET events by ROOM
   var roomName = req.params.roomName;
   operations.getRoomEvents(roomName)
     .then((events) => {
-      if (events.length >= 1)
+      if (events.length >= 1) {
         res.send(events);
-      res.send(`No Events for: ${roomName}`);
+      } else {
+        res.send(`No Events for: ${roomName}`);
+      }
     })
     .catch((error) => {
       res.send(error);
@@ -41,10 +43,10 @@ app.get('/events/:userId', function (req, res) { //GET events by UserId
   var userId = req.params.userId;
   operations.getMyEvents(userId)
     .then((events) => {
-      if (events){
-        res.send(events);        
-      }else{
-      res.send(`No Events for: ${userId}`);        
+      if (events.length>=1) {
+        res.send(events);
+      } else {
+        res.send(`No Events for: ${userId}`);
       }
     })
     .catch((error) => {
@@ -58,27 +60,27 @@ app.delete('/user/:userId/events/startingTime/:startsAt', function (req, res) { 
 
   operations.deleteEvent(userId, startingTime)
     .then((deletedEvent) => {
-      if (deletedEvent){
+      if (deletedEvent) {
         res.send(deletedEvent);
-      }else{
+      } else {
         res.send(`No Matching Events for: ${userId} and ${startingTime}`);
-      }      
+      }
     })
     .catch((error) => {
-      console.log("Error",error);
+      console.log("Error", error);
     })
 
 });
 
-app.post('/events',function(req,res){ //POST request For event
+app.post('/events', function (req, res) { //POST request For event
   var event = new Event(req.body);
   operations.createEvent(event)
-     .then((createdEvent) => {
-       res.send(createdEvent);
-      })
-      .catch((error) => {
-        res.send(`Room is already booked for slot ${event.startsAt} to ${event.endsAt}.`);
-      })
+    .then((createdEvent) => {
+      res.send(createdEvent);
+    })
+    .catch((error) => {
+      res.send(`Room is already booked for slot ${event.startsAt} to ${event.endsAt}.`);
+    })
 });
 
 
