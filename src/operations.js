@@ -84,6 +84,12 @@ function Operations() {
     return Office.find();
   }
 
+  function getRoom(roomName){
+    return Office.find({
+      roomName :roomName
+    })
+  }
+
   
 
   return {
@@ -91,7 +97,8 @@ function Operations() {
     getMyEvents : getMyEvents,
     getRoomEvents : getRoomEvents,
     deleteEvent: deleteEvent,
-    getRooms :getRooms
+    getRooms :getRooms,
+    getRoom: getRoom
   }
 
 }

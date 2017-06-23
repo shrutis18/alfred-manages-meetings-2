@@ -24,6 +24,17 @@ app.get('/rooms', function (req, res) {
     })
 })
 
+app.get('/room/:roomName', function (req, res) {
+  var roomName = req.params.roomName;
+  operations.getRoom(roomName)
+    .then((room) => {
+      res.send(room)
+    })
+    .catch((error) => {
+      res.send(error)
+    })
+})
+
 app.get('/room/:roomName/events', function (req, res) { //GET events by ROOM
   var roomName = req.params.roomName;
   operations.getRoomEvents(roomName)
@@ -61,7 +72,7 @@ app.delete('/user/:userId/events/startingTime/:startsAt', function (req, res) { 
   operations.deleteEvent(userId, startingTime)
     .then((deletedEvent) => {
       if (deletedEvent) {
-        res.send(deletedEvent);
+        res.send(`${deletedEvent.title} :Event Deleted`);
       } else {
         res.send(`No Matching Events for: ${userId} and ${startingTime}`);
       }
