@@ -8,7 +8,7 @@ var Office = require('../../src/model/office');
 var mongoService = new MongoService();
 
 describe('office', function () {
- it.only('Should be able to get rooms', function(done){
+ it('Should be able to get rooms', function(done){
 
    
     mongoService.getRooms()
