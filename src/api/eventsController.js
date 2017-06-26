@@ -4,9 +4,9 @@ var app = express();
 var Event = require('../model/event');
 
 var bodyParser = require('body-parser');
-var Operations = require('../operations');
+var MongoService = require('../mongoService');
 
-var operations = new Operations();
+var mongoService = new MongoService();
 
 app.use(bodyParser.json());
 
@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/rooms', function (req, res) {
-  operations.getRooms()
+  mongoService.getRooms()
     .then((rooms) => {
       res.send(rooms)
     })
@@ -26,7 +26,7 @@ app.get('/rooms', function (req, res) {
 
 app.get('/room/:roomName', function (req, res) {
   var roomName = req.params.roomName;
-  operations.getRoom(roomName)
+  mongoService.getRoom(roomName)
     .then((room) => {
       res.send(room)
     })
@@ -37,7 +37,7 @@ app.get('/room/:roomName', function (req, res) {
 
 app.get('/room/:roomName/events', function (req, res) { //GET events by ROOM
   var roomName = req.params.roomName;
-  operations.getRoomEvents(roomName)
+  mongoService.getRoomEvents(roomName)
     .then((events) => {
       if (events.length >= 1) {
         res.send(events);
@@ -52,7 +52,7 @@ app.get('/room/:roomName/events', function (req, res) { //GET events by ROOM
 
 app.get('/events/:userId', function (req, res) { //GET events by UserId
   var userId = req.params.userId;
-  operations.getMyEvents(userId)
+  mongoService.getMyEvents(userId)
     .then((events) => {
       if (events.length>=1) {
         res.send(events);
@@ -69,7 +69,7 @@ app.delete('/user/:userId/events/startingTime/:startsAt', function (req, res) { 
   var userId = req.params.userId;
   var startingTime = req.params.startsAt;
 
-  operations.deleteEvent(userId, startingTime)
+  mongoService.deleteEvent(userId, startingTime)
     .then((deletedEvent) => {
       if (deletedEvent) {
         res.send(`${deletedEvent.title} :Event Deleted`);
@@ -85,7 +85,7 @@ app.delete('/user/:userId/events/startingTime/:startsAt', function (req, res) { 
 
 app.post('/events', function (req, res) { //POST request For event
   var event = new Event(req.body);
-  operations.createEvent(event)
+  mongoService.createEvent(event)
     .then((createdEvent) => {
       res.send(createdEvent);
     })

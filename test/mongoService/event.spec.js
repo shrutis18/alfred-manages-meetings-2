@@ -3,9 +3,9 @@ var expect = chai.expect;
 chai.should();
 var assert = require('assert');
 
-var Operations = require('../../src/operations');
+var MongoService = require('../../src/mongoService');
 var Event = require('../../src/model/event');
-//var operations = new Operations();
+var mongoService = new MongoService();
 
 describe('event', function () {
   it('Should create an event', function (done) {
@@ -21,7 +21,7 @@ describe('event', function () {
 
 
     //when
-    operations.createEvent(event)
+    mongoService.createEvent(event)
       .then((data) => {
         console.log("event is created", data);
       })
@@ -43,7 +43,7 @@ describe('event', function () {
       createdBy: "vsingh@equalexperts.com"
     })
 
-    operations.createEvent(event)
+    mongoService.createEvent(event)
       .then((data) => {
         console.log("event is created", data);
       })
@@ -57,7 +57,7 @@ describe('event', function () {
   it('Should be able to get my events',function(done){
     
     var userId = "ssingh@equalexperts.com";
-    operations.getMyEvents(userId)
+    mongoService.getMyEvents(userId)
       .then((events) => {
         console.log("My Events",events);
       })
@@ -71,7 +71,7 @@ describe('event', function () {
   it('Should get Events for a Room', function(done){
 
     var roomName ="Beach";
-    operations.getRoomEvents(roomName)
+    mongoService.getRoomEvents(roomName)
        .then((events) => {
         console.log("Room Events",events);
       })
@@ -86,7 +86,7 @@ describe('event', function () {
     var userId = "ssingh@equalexperts.com";
     var startsAt = new Date("2017-07-10T08:30:00Z");
 
-    operations.deleteEvent(userId,startsAt)
+    mongoService.deleteEvent(userId,startsAt)
       .then((event) =>{
         console.log("event deleted:",event);
       })

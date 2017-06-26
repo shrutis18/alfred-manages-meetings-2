@@ -4,7 +4,7 @@ mongoose.Promise = require('bluebird');
 var Event = require('./model/event');
 var Office = require('./model/office');
 
-function Operations() {
+function MongoService() {
 
   var dbUrl = "mongodb://localhost/meetings";
   var conn = mongoose.connect(dbUrl);
@@ -102,4 +102,4 @@ function Operations() {
   }
 
 }
-module.exports = Operations;
+module.exports = MongoService;

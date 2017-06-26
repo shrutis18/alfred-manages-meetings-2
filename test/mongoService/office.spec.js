@@ -3,15 +3,15 @@ var expect = chai.expect;
 chai.should();
 var assert = require('assert');
 
-var Operations = require('../../src/operations');
+var MongoService = require('../../src/mongoService');
 var Office = require('../../src/model/office');
-var operations = new Operations();
+//var mongoService = new MongoService();
 
 describe('office', function () {
  it.only('Should be able to get rooms', function(done){
 
    
-    operations.getRooms()
+    mongoService.getRooms()
       .then((rooms) =>{
         console.log("Rooms::",rooms);
       })
