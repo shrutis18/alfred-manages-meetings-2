@@ -5,7 +5,7 @@ var assert = require('assert');
 
 var MongoService = require('../../src/mongoService');
 var Office = require('../../src/model/office');
-//var mongoService = new MongoService();
+var mongoService = new MongoService();
 
 describe('office', function () {
  it.only('Should be able to get rooms', function(done){
